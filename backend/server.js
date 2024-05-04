@@ -7,6 +7,9 @@ dotenv.config();
 
 const User = require("./Models/useModel");
 
+app.use(express.json());
+
+
 // MongoDB starts
 mongoose
   .connect(process.env.URI)
@@ -34,7 +37,7 @@ app.get("/", (req, res) => {
 
 // Create data starts
 app.post("/", async (req, res) => {
-  
+
   const { name, email, age } = req.body;
   const User = require("./Models/useModel");
 
