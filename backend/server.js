@@ -7,8 +7,7 @@ dotenv.config();
 
 const User = require("./Models/useModel");
 
-app.use(express.json())
-
+app.use(express.json());
 
 // MongoDB starts
 mongoose
@@ -29,15 +28,12 @@ mongoose
 const PORT = 4000;
 const hostName = "localhost";
 
-app.get("/", (req, res) => {
-  res.send("Api is Working...");
-});
-
-
+// app.get("/", (req, res) => {
+//   res.send("Api is Working...");
+// });
 
 // Create data starts
 app.post("/", async (req, res) => {
-
   const { name, email, age } = req.body;
   const User = require("./Models/useModel");
 
@@ -56,9 +52,18 @@ app.post("/", async (req, res) => {
 });
 // Create data ends
 
-
-
-
+// Show data starts
+app.get("/", async (req, res) => {
+  try {
+    const showAll = await User.find();
+    res.status(200).json(showAll);
+  } catch (error) {
+    console.log(error)
+    res.send(500).json({ error: error.message });
+  }
+  console.log("app is showing")
+});
+// Show data ends
 
 app.listen(PORT, () => {
   console.log(`listening to the http://${hostName}:${PORT}`);
