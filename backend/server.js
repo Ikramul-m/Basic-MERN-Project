@@ -7,7 +7,7 @@ dotenv.config();
 
 const User = require("./Models/useModel");
 
-app.use(express.json());
+app.use(express.json())
 
 
 // MongoDB starts
