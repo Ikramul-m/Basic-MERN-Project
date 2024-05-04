@@ -1,5 +1,14 @@
+const express = require("express");
+
+const mongoose = require("mongoose");
+
+const User = require("../Models/useModel")
+
+const router = express.Router();
+
+
 // Create data starts
-app.post("/", async (req, res) => {
+router.post("/", async (req, res) => {
   const { name, email, age } = req.body;
   const User = require("./Models/useModel");
 
@@ -19,7 +28,7 @@ app.post("/", async (req, res) => {
 // Create data ends
 
 // Show data starts
-app.get("/", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const showAll = await User.find();
     res.status(200).json(showAll);
