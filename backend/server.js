@@ -5,6 +5,8 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+const User = require("./Models/useModel");
+
 // MongoDB starts
 mongoose
   .connect(process.env.URI)
