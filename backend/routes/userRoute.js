@@ -1,16 +1,16 @@
 const express = require("express");
 
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
-const User = require("../Models/useModel")
+const User = require("../Models/useModel");
 
 const router = express.Router();
 
+router.use(express.json());
 
 // Create data starts
 router.post("/", async (req, res) => {
   const { name, email, age } = req.body;
-  const User = require("./Models/useModel");
 
   try {
     const userCreated = await User.create({
@@ -39,3 +39,5 @@ router.get("/", async (req, res) => {
   console.log("app is showing");
 });
 // Show data ends
+
+module.exports = router;

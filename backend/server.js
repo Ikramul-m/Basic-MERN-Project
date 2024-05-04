@@ -5,9 +5,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-const User = require("./Models/useModel");
-
-app.use(express.json());
+const userRoute = require("./routes/userRoute");
 
 // MongoDB starts
 mongoose
@@ -28,9 +26,8 @@ mongoose
 const PORT = 4000;
 const hostName = "localhost";
 
-
-
-
 app.listen(PORT, () => {
   console.log(`listening to the http://${hostName}:${PORT}`);
 });
+
+app.use("/api/user", userRoute);
