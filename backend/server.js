@@ -30,6 +30,33 @@ app.get("/", (req, res) => {
   res.send("Api is Working...");
 });
 
+
+
+// Create data starts
+app.post("/", async (req, res) => {
+  
+  const { name, email, age } = req.body;
+  const User = require("./Models/useModel");
+
+  try {
+    const userCreated = await User.create({
+      name: name,
+      email: email,
+      age: age,
+    });
+
+    res.status(201).json(userCreated);
+  } catch (error) {
+    console.log(error);
+    res.send(400).json({ error: error.message });
+  }
+});
+// Create data ends
+
+
+
+
+
 app.listen(PORT, () => {
   console.log(`listening to the http://${hostName}:${PORT}`);
 });
