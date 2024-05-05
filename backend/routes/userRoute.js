@@ -36,8 +36,56 @@ router.get("/", async (req, res) => {
     console.log(error);
     res.send(500).json({ error: error.message });
   }
-  console.log("app is showing");
+  // console.log("app is showing");
 });
 // Show data ends
+
+//get single user starts
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const singleUser = await User.findById({ _id: id });
+    res.status(200).json(singleUser);
+  } catch (error) {
+    console.log(error);
+    res.send(500).json({ error: error.message });
+  }
+  console.log("app is showing");
+});
+//get single user ends
+
+// DELETE operations starts
+
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const singleUser = await User.findByIdAndDelete({ _id: id });
+    res.status(200).json(singleUser);
+  } catch (error) {
+    console.log(error);
+    res.send(500).json({ error: error.message });
+  }
+  // console.log("app is showing");
+});
+
+// DELETE operations ends
+
+// PATCH operation starts
+router.patch("/:id", async (req, res) => {
+  const { id } = req.params;
+  const { name, email, age } = req.body;
+  try {
+    const updateUser = await User.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+    res.status(200).json(updateUser);
+  } catch (error) {
+    console.log(error);
+    res.send(500).json({ error: error.message });
+  }
+  // console.log("app is showing");
+});
+
+// PATCH operations ends
 
 module.exports = router;
