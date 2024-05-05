@@ -1,29 +1,25 @@
 import React, { useState } from "react";
-// const express = require("express")
-// const app
-
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
-  
-  const [name, setName] = useState("");
+  const [fname, setName] = useState("");
   const [email, setEmail] = useState("");
   const [age, setAge] = useState(0);
-
   const [error, setError] = useState("");
 
-  console.log(name, email, age);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    var addUser = { fname, email, age };
+    console.log(addUser);
 
-    const addUser = { name, email, age };
-
-    const response = await fetch("http://localhost:5000/api/user", {
+    const response = await fetch("http://localhost:8000/", {
       method: "POST",
-      body: JSON.stringify(addUser),
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify(addUser),
     });
 
     const result = await response.json();
@@ -32,62 +28,50 @@ const Create = () => {
       console.log(result.error);
       setError(result.error);
     }
-
     if (response.ok) {
       console.log(result);
-      setError("");
       setName("");
       setEmail("");
       setAge(0);
+      setError("");
+      navigate("/read");
     }
   };
 
   return (
+    <div class="container my-2">
+      <h1 class="h1 text-center">Fill the data</h1>
 
-
-    <div className="container my-2">
-
-
-      {error && (
-        <div className="alert alert-danger">
-          {error}
-        </div>
-      )}
-
-      <h2 className="text-center">Enter the Data</h2>
-
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">Name</label>
+      {error && <div class="alert alert-danger"> {error} </div>}
+      <form className="form" onSubmit={handleSubmit}>
+        <div class="mb-3">
+          <label class="form-label">Name</label>
           <input
             type="text"
-            className="form-control"
-            value={name}
+            class="form-control"
+            value={fname}
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-
-        <div className="mb-3">
-          <label className="form-label">Email</label>
+        <div class="mb-3">
+          <label class="form-label">Email address</label>
           <input
             type="email"
-            className="form-control"
+            class="form-control"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-
-        <div className="mb-3">
-          <label className="form-label">Age</label>
+        <div class="mb-3">
+          <label class="form-label">Age</label>
           <input
             type="number"
-            className="form-control"
+            class="form-control"
             value={age}
             onChange={(e) => setAge(e.target.value)}
           />
         </div>
-
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" class="btn btn-primary">
           Submit
         </button>
       </form>
