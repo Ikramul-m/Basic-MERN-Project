@@ -3,7 +3,8 @@ import React from 'react'
 const Show = () => {
   return (
     <div>
-      Show data
+      <h1>Show data</h1>
+      
     </div>
   )
 }

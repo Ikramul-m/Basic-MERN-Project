@@ -9,10 +9,11 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <Navbar />
         <Routes>
-          <Route exact path="/" elements={<Create />} />
-          <Route exact path="/all" elements={<Show />} />
-          <Route exact path="/update" elements={<Update />} />
+          <Route exact path="/" element={<Create />} />
+          <Route exact path="/all" element={<Show />} />
+          <Route exact path="/update" element={<Update />} />
         </Routes>
       </BrowserRouter>
     </div>
