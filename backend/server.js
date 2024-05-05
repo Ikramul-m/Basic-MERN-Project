@@ -5,6 +5,9 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+const cors = require("cors");
+app.use(cors());
+
 const userRoute = require("./routes/userRoute");
 
 // MongoDB starts
