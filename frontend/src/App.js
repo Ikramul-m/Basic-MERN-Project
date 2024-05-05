@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Router, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Show from "./Components/Show";
 import Create from "./Components/Create";
 import Update from "./Components/Update";
@@ -9,11 +9,11 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Router>
+        <Routes>
           <Route exact path="/" elements={<Create />} />
           <Route exact path="/all" elements={<Show />} />
           <Route exact path="/update" elements={<Update />} />
-        </Router>
+        </Routes>
       </BrowserRouter>
     </div>
   );
