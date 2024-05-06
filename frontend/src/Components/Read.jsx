@@ -1,11 +1,15 @@
-import React from 'react'
+import React from "react";
 
 const Read = () => {
   return (
-    <div>
-      <h2>Read</h2>
-    </div>
-  )
-}
+    <div className="container my-2">
+      <h2 className="text-center">Read</h2>
 
-export default Read
+      <div className="row">
+        <div className="col-3"></div>
+      </div>
+    </div>
+  );
+};
+
+export default Read;
