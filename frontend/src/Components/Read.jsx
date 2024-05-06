@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Update from "./Update";
 
 const Read = () => {
   const [data, setData] = useState([]);
@@ -36,7 +38,7 @@ const Read = () => {
       setTimeout(() => {
         setError("");
         getData();
-      }, 2000);
+      }, 500);
     }
   };
 
@@ -70,9 +72,9 @@ const Read = () => {
                 >
                   Delete
                 </a>
-                <a href="#" className="card-link">
+                <Link to="/update" className="card-link" >
                   Edit
-                </a>
+                </Link>
               </div>
             </div>
           </div>
