@@ -26,10 +26,12 @@ const Read = () => {
 
   return (
     <div className="container my-2">
+       {error && <div className="alert alert-danger">{error}</div>}
+
       <h2 className="text-center">All Members</h2>
 
       <div className="row">
-        {data.map((ele) => (
+        {data?.map((ele) => (
           <div key={ele._id} className="col-3">
             <div className="card">
               <div className="card-body">

@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [age, setAge] = useState(0);
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +30,8 @@ const Create = () => {
       setName("");
       setEmail("");
       setAge(0);
-      setError(""); // Clear error if request was successful
+      setError("");
+      navigate("/all");
     } catch (error) {
       console.error("Error:", error.message);
       setError(error.message);
