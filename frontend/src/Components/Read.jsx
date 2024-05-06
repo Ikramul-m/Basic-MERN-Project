@@ -19,10 +19,9 @@ const Read = () => {
   }
 
   const handleDelete = async (id) => {
-
-    const response = await fetch(`http://localhost:5000/api/user/${id}`,{
-      method: "DELETE"
-    })
+    const response = await fetch(`http://localhost:5000/api/user/${id}`, {
+      method: "DELETE",
+    });
 
     const result = await response.json();
 
@@ -32,16 +31,14 @@ const Read = () => {
     }
 
     if (response.ok) {
-      setError("Deleted Succesfully")
+      setError("Deleted Succesfully");
 
       setTimeout(() => {
-        setError("")
-        getData()
-      }, 2000)
+        setError("");
+        getData();
+      }, 2000);
     }
-  }
-
-
+  };
 
   useEffect(() => {
     getData();
@@ -51,7 +48,7 @@ const Read = () => {
 
   return (
     <div className="container my-2">
-       {error && <div className="alert alert-danger">{error}</div>}
+      {error && <div className="alert alert-danger">{error}</div>}
 
       <h2 className="text-center">All Members</h2>
 
@@ -62,9 +59,15 @@ const Read = () => {
               <div className="card-body">
                 <h3 className="card-title">{ele.name}</h3>
                 <h6 className="card-title">Email: {ele.email}</h6>
-                <h6 className="card-subtitle mb-2 text-muted">Age: {ele.age}</h6>
+                <h6 className="card-subtitle mb-2 text-muted">
+                  Age: {ele.age}
+                </h6>
 
-                <a href="#" className="card-link" onClick={() => handleDelete(ele._id)}>
+                <a
+                  href="#"
+                  className="card-link"
+                  onClick={() => handleDelete(ele._id)}
+                >
                   Delete
                 </a>
                 <a href="#" className="card-link">
