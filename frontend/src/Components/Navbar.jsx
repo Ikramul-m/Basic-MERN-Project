@@ -4,9 +4,6 @@ const Navbar = () => {
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          Navbar
-        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -22,17 +19,17 @@ const Navbar = () => {
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">
-                Home
+                MERN
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
-                Features
+                Create Post
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
-                Features
+                All Post
               </a>
             </li>
           </ul>
