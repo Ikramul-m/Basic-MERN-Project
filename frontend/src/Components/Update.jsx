@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Update = () => {
   const [name, setName] = useState("");
@@ -10,52 +11,47 @@ const Update = () => {
 
   const { id } = useParams();
 
+  const navigate = useNavigate();
+
   const getSingleUser = async () => {
-    const response = await fetch(`http://localhost:5000/api/user/${id}`);
+    try {
+      const response = await fetch(`http://localhost:5000/api/user/${id}`);
 
-    const result = await response.json();
+      if (!response.ok) {
+        throw new Error("Failed to fetch user data");
+      }
 
-    if (!response.ok) {
-      console.log(result.error);
-      setError(result.error);
-    }
-
-    if (response.ok) {
-      setError("");
-      console.log("Updated user: ", result);
+      const result = await response.json();
       setName(result.name);
       setEmail(result.email);
       setAge(result.age);
+    } catch (error) {
+      setError(error.message);
     }
   };
 
-
-  e.preventDefault();
-    const addUser = { name, email, age };
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    const updatedUser = { name, email, age };
 
     try {
-      const response = await fetch("http://localhost:5000/api/user", {
-        method: "POST",
-        body: JSON.stringify(addUser),
+      const response = await fetch(`http://localhost:5000/${id}`, {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify(updatedUser),
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error);
+        throw new Error("Failed to update user data");
       }
 
-      // setName("");
-      // setEmail("");
-      // setAge(0);
-      // setError("");
-      navigate("/all");
+      navigate("/read");
     } catch (error) {
-      console.error("Error:", error.message);
       setError(error.message);
     }
+  };
 
   useEffect(() => {
     getSingleUser();
@@ -66,7 +62,7 @@ const Update = () => {
       {error && <div className="alert alert-danger">{error}</div>}
 
       <h2 className="text-center">Edit the data</h2>
-      <form>
+      <form onSubmit={handleUpdate}>
         <div className="mb-3">
           <label className="form-label">Name</label>
           <input
@@ -91,7 +87,7 @@ const Update = () => {
         <div className="mb-3">
           <label className="form-label">Age</label>
           <input
-            type="number" // lowercase 'number'
+            type="number"
             className="form-control"
             value={age}
             onChange={(e) => setAge(e.target.value)}
