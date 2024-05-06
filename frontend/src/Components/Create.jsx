@@ -20,6 +20,14 @@ const Create = () => {
     });
 
     const result = await response.json();
+
+    if (!response.ok) {
+      console.log(result.error);
+    }
+
+    if (response.ok) {
+      console.log(result);
+    }
   };
 
   return (
