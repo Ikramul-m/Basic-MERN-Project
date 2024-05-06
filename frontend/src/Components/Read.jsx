@@ -18,6 +18,31 @@ const Read = () => {
     }
   }
 
+  const handleDelete = async (id) => {
+
+    const response = await fetch(`http://localhost:5000/api/user/${id}`,{
+      method: "DELETE"
+    })
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      console.log(result.error);
+      setError(result.error);
+    }
+
+    if (response.ok) {
+      setError("Deleted Succesfully")
+
+      setTimeout(() => {
+        setError("")
+        getData()
+      }, 2000)
+    }
+  }
+
+
+
   useEffect(() => {
     getData();
   }, []);
@@ -39,7 +64,7 @@ const Read = () => {
                 <h6 className="card-title">Email: {ele.email}</h6>
                 <h6 className="card-subtitle mb-2 text-muted">Age: {ele.age}</h6>
 
-                <a href="#" className="card-link">
+                <a href="#" className="card-link" onClick={() => handleDelete(ele._id)}>
                   Delete
                 </a>
                 <a href="#" className="card-link">
