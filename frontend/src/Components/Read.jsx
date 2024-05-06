@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const Read = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
   const [error, setError] = useState();
 
   async function getData() {
@@ -26,24 +26,27 @@ const Read = () => {
 
   return (
     <div className="container my-2">
-      <h2 className="text-center">Read</h2>
+      <h2 className="text-center">All Members</h2>
 
       <div className="row">
-        <div className="col-3">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <h6 className="card-subtitle mb-2 text-muted">Age</h6>
+        {data.map((ele) => (
+          <div key={ele._id} className="col-3">
+            <div className="card">
+              <div className="card-body">
+                <h3 className="card-title">{ele.name}</h3>
+                <h6 className="card-title">Email: {ele.email}</h6>
+                <h6 className="card-subtitle mb-2 text-muted">Age: {ele.age}</h6>
 
-              <a href="#" className="card-link">
-                Delete
-              </a>
-              <a href="#" className="card-link">
-                Edit
-              </a>
+                <a href="#" className="card-link">
+                  Delete
+                </a>
+                <a href="#" className="card-link">
+                  Edit
+                </a>
+              </div>
             </div>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );
