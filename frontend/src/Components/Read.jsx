@@ -3,7 +3,7 @@ import React from 'react'
 const Read = () => {
   return (
     <div>
-      Read
+      <h2>Read</h2>
     </div>
   )
 }
