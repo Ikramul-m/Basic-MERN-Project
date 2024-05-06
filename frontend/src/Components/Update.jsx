@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const Update = () => {
@@ -9,7 +9,7 @@ const Update = () => {
   const [error, setError] = useState("");
 
   const { id } = useParams();
-  
+
   const getSingleUser = async () => {
     const response = await fetch(`http://localhost:5000/api/user/${id}`);
 
@@ -22,9 +22,16 @@ const Update = () => {
 
     if (response.ok) {
       setError("");
-      console.log("Updated user: ", response);
+      console.log("Updated user: ", result);
+      setName(result.name);
+      setEmail(result.email);
+      setAge(result.age);
     }
   };
+
+  useEffect(() => {
+    getSingleUser();
+  }, []);
 
   return (
     <div className="container my-2">
