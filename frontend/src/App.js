@@ -1,11 +1,13 @@
 import "./App.css";
 import Navbar from "./Components/Navbar";
+import { BrowserRouter, Router, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <Navbar/>
-      {/* <button className="btn btn-primary"> Hello World</button> */}
+      <BrowserRouter>
+        <Navbar />
+      </BrowserRouter>
     </div>
   );
 }
