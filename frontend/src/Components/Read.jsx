@@ -72,7 +72,7 @@ const Read = () => {
                 >
                   Delete
                 </a>
-                <Link to="/update" className="card-link" >
+                <Link to={`/${ele._id}`} className="card-link" >
                   Edit
                 </Link>
               </div>
