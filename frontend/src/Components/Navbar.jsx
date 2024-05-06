@@ -25,7 +25,7 @@ const Navbar = () => {
                 Home
               </a>
             </li>
-            <li class="nav-item">
+            {/* <li class="nav-item">
               <a class="nav-link" href="#">
                 Features
               </a>
@@ -44,7 +44,7 @@ const Navbar = () => {
               >
                 Disabled
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
