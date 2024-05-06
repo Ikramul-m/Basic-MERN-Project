@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 
 const Create = () => {
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [age, setAge] = useState(0);
 
+  console.log(name,email,age)
+
   return (
-    <div classNameName="container my-2">
-      <h2 classNameName="text-center">Enter the data</h2>
+    <div className="container my-2">
+      <h2 className="text-center">Enter the data</h2>
       <form>
         <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">
+          <label  className="form-label">
             Name
           </label>
           <input
@@ -22,7 +25,7 @@ const Create = () => {
         </div>
 
         <div className="mb-3">
-          <label for="exampleInputEmail1" className="form-label">
+          <label  className="form-label">
             Email address
           </label>
           <input
@@ -35,7 +38,7 @@ const Create = () => {
         </div>
 
         <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">
+          <label  className="form-label">
             Age
           </label>
           <input
